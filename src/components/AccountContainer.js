@@ -1,14 +1,15 @@
 import React, { Component } from 'react'
 import TransactionsList from './TransactionsList'
 import Search from './Search'
-import {transactions} from '../transactionsData'
+
 
 class AccountContainer extends Component {
 
   constructor() {
     super()
     this.state = {
-      transactions: []
+      transactions: [],
+      filter: []
     }
     // get a default state working with the data imported from TransactionsData
     // use this to get the functionality working
@@ -21,21 +22,37 @@ class AccountContainer extends Component {
     .then(resp => resp.json())
     .then(transactionData => {
       this.setState({
-        transactions: transactionData
+        transactions: transactionData,
+        filter: transactionData
       })
     })
+
   }
 
-  handleChange(event) {
-    // your code here
+  handleChange = (event) => {
+    this.setState({
+      filter: event.target.value
+    })
+  
   }
 
-  render() {
+  // let updatedList = this.state.transactions;
+  // updatedList = updatedList.filter(function(trans){
+  //   return trans.toLowerCase().search(
+  //     event.target.value.toLowerCase()) !== -1;
+  //   });
+  //   this.setState({
+  //     filter: updatedList
+  //   })
+  
+    
+render() {
+ const search = this.state.filter
 
     return (
       <div>
-        <Search />
-        <TransactionsList trans={this.state.transactions}/>
+        <Search handleChange={this.handleChange} value={search}/>
+        <TransactionsList transaction={this.state.filter}/>
       </div>
     )
   }

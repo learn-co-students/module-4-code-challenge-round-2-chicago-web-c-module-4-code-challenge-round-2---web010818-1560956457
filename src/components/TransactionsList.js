@@ -4,19 +4,13 @@ import Transaction from './Transaction'
 class TransactionsList extends Component {
 
   
-
-  
-
-  
-
-
-  render(){
-    const renderTransaction = this.props.trans.map(transy => {
+render(){
+    const renderTransaction = this.props.transaction.map(trans => {
      return (<Transaction 
-      posted={transy.posted_at} 
-      description={transy.description}
-      category={transy.category}
-      amount={transy.amount}/>)
+      posted={trans.posted_at} 
+      description={trans.description}
+      category={trans.category}
+      amount={trans.amount}/>)
     })
 
     return (

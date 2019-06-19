@@ -1,38 +1,51 @@
-import React from 'react'
+import React, { Component } from 'react'
+import Transaction from './Transaction'
 
-const TransactionsList = () => {
+class TransactionsList extends Component {
 
-  return (
-    <table className="ui celled striped padded table">
-      <tbody>
-        <tr>
-          <th>
-            <h3 className="ui center aligned header">
-              Posted At
-            </h3>
-          </th>
-          <th>
-            <h3 className="ui center aligned header">
-              Description
-            </h3>
-          </th>
-          <th>
-            <h3 className="ui center aligned header">
-              Category
-            </h3>
-          </th>
-          <th>
-            <h3 className="ui center aligned header">
-              Amount
-            </h3>
-          </th>
-        </tr>
+  
+render(){
+    const renderTransaction = this.props.transaction.map(trans => {
+     return (<Transaction 
+      posted={trans.posted_at} 
+      description={trans.description}
+      category={trans.category}
+      amount={trans.amount}/>)
+    })
 
-        {"... your code here..."}
+    return (
+      <table className="ui celled striped padded table">
+        <tbody>
+          <tr>
+            <th>
+              <h3 className="ui center aligned header">
+                Posted At
+              </h3>
+            </th>
+            <th>
+              <h3 className="ui center aligned header">
+                Description
+              </h3>
+            </th>
+            <th>
+              <h3 className="ui center aligned header">
+                Category
+              </h3>
+            </th>
+            <th>
+              <h3 className="ui center aligned header">
+                Amount
+              </h3>
+            </th>
+          </tr>
 
-      </tbody>
-    </table>
-  )
+          {renderTransaction}
+
+        </tbody>
+      </table>
+    )
+  }
+
 }
 
 export default TransactionsList
